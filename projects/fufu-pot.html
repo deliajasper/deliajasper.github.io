@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Name - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #fafaf9;
+            --bg-secondary: #f5f5f4;
+            --bg-card: #ffffff;
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --accent-primary: #d97706;
+            --accent-secondary: #0891b2;
+            --border: #e7e5e4;
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 250, 249, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+            transform: translateX(-4px);
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .project-header {
+            margin-bottom: 3rem;
+        }
+
+        .project-type {
+            display: inline-block;
+            background: var(--accent-secondary);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .project-type.theatre {
+            background: var(--accent-primary);
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .project-summary {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 3rem;
+        }
+
+        .tech-item {
+            background: var(--bg-secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border: 1px solid var(--border);
+        }
+
+        /* Image Placeholder */
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            margin-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Project Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .detail-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .detail-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+        }
+
+        .detail-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Footer Navigation */
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-nav a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-nav a:hover {
+            color: var(--accent-secondary);
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .project-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="back-link">Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="project-header">
+            <span class="project-type">Robotics</span>
+            <h1>Autonomous Rover</h1>
+            <p class="project-summary">
+                A Mars rover prototype that uses computer vision and LIDAR for autonomous navigation and terrain mapping.
+            </p>
+            <div class="tech-stack">
+                <span class="tech-item">ROS</span>
+                <span class="tech-item">Python</span>
+                <span class="tech-item">OpenCV</span>
+                <span class="tech-item">Raspberry Pi</span>
+            </div>
+        </div>
+
+        <div class="project-image">
+            [Project image here - replace with actual image]
+        </div>
+
+        <div class="content-section">
+            <h2>Overview</h2>
+            <p>
+                This project involved designing and building a fully autonomous rover capable of navigating challenging terrain. The rover uses a combination of computer vision and LIDAR sensors to create real-time maps of its environment and make navigation decisions.
+            </p>
+            <p>
+                The goal was to create a robust system that could operate in unknown environments without human intervention, making it suitable for exploration scenarios where remote control isn't feasible.
+            </p>
+        </div>
+
+        <div class="details-grid">
+            <div class="detail-card">
+                <h3>Duration</h3>
+                <p>6 months</p>
+            </div>
+            <div class="detail-card">
+                <h3>Role</h3>
+                <p>Lead Developer & Designer</p>
+            </div>
+            <div class="detail-card">
+                <h3>Team Size</h3>
+                <p>Solo Project</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Technical Approach</h2>
+            <p>
+                The rover's architecture was built around ROS (Robot Operating System), which provided a flexible framework for integrating various sensors and control systems. Key components included:
+            </p>
+            <ul>
+                <li><strong>Computer Vision:</strong> OpenCV-based obstacle detection and path planning</li>
+                <li><strong>LIDAR Integration:</strong> Real-time 3D mapping of the environment</li>
+                <li><strong>Motor Control:</strong> Custom PID controllers for precise movement</li>
+                <li><strong>Power Management:</strong> Efficient battery system with solar charging capability</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Challenges & Solutions</h2>
+            <p>
+                One of the biggest challenges was dealing with sensor noise and creating reliable navigation algorithms. The LIDAR data needed significant filtering to remove false positives, and the computer vision system had to work in varying lighting conditions.
+            </p>
+            <p>
+                I implemented a sensor fusion approach that combined data from multiple sources to create a more reliable environmental model. This significantly improved navigation accuracy, especially in complex terrain.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h2>Results</h2>
+            <p>
+                The final rover successfully navigated obstacle courses with 95% accuracy and could operate continuously for 4+ hours on a single charge. The terrain mapping system generated detailed 3D models that could be used for post-mission analysis.
+            </p>
+        </div>
+
+        <div class="project-nav">
+            <a href="smart-home-hub.html">← Previous Project</a>
+            <a href="robotic-arm.html">Next Project →</a>
+        </div>
+    </main>
+</body>
+</html>
