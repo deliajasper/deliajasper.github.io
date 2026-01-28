@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Portfolio Website 🎨✨
 
 A personable, fun portfolio website showcasing engineering and theatre projects. Optimized for GitHub Pages deployment.
@@ -144,3 +145,6 @@ Your portfolio is ready to impress. Now go forth and showcase your amazing work!
 ---
 
 **Made with ☕ and lots of ✨**
+=======
+# deliajasper.github.io
+>>>>>>> refs/remotes/origin/main
