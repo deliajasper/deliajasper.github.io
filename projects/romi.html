@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Name - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #fafaf9;
+            --bg-secondary: #f5f5f4;
+            --bg-card: #ffffff;
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --accent-primary: #d6479b;
+            --accent-secondary: #55a840;
+            --border: #e7e5e4;
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 250, 249, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+            transform: translateX(-4px);
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .project-header {
+            margin-bottom: 3rem;
+        }
+
+        .project-type {
+            display: inline-block;
+            background: var(--accent-secondary);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .project-type.theatre {
+            background: var(--accent-primary);
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .project-summary {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 3rem;
+        }
+
+        .tech-item {
+            background: var(--bg-secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border: 1px solid var(--border);
+        }
+
+        /* Image Placeholder */
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            margin-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Project Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .detail-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .detail-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+        }
+
+        .detail-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Footer Navigation */
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-nav a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-nav a:hover {
+            color: var(--accent-secondary);
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .project-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="back-link">Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="project-header">
+            <span class="project-type">Robotics</span>
+            <h1>Small Mobile Robot</h1>
+            <p class="project-summary">
+                A small robot that uses computer vision, kinematics, and sensor fusion for autonomous navigation and task completion.
+            </p>
+            <div class="tech-stack">
+                <span class="tech-item">C++</span>
+                    <span class="tech-item">Arduino</span>
+                    <span class="tech-item">OpenMV</span>
+                    <span class="tech-item">Filters</span>
+                    <span class="tech-item">Kinematics</span>
+            </div>
+        </div>
+
+        <img src="../images/romi-image.jpg" 
+            alt="Photo of romi robot" 
+            class="project-image"
+            style="width: 100%; height: auto; object-fit: cover;">
+
+        <div class="content-section">
+            <h2>Overview</h2>
+            <p>
+                This was a long-term class project for WPI's RBE2002 course, which focuses on sensing. We used a Pololi Romi robot, and completed tasks such as lifting a basket and weighing it, navigating to specific coordinates based on AprilTag markers, and applying inverse and forward kinematics for movement tracking.
+            </p>
+            <p>
+                Major concepts use include PID control, op-amps and filters, computer vision, and state based control.
+            </p>
+        </div>
+
+        <div class="details-grid">
+            <div class="detail-card">
+                <h3>Duration</h3>
+                <p>2 months</p>
+            </div>
+            <div class="detail-card">
+                <h3>Role</h3>
+                <p>Student</p>
+            </div>
+            <div class="detail-card">
+                <h3>Team Size</h3>
+                <p>3 members</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Technical Approach</h2>
+            <p>
+                The romi's was coded using C++, which allowed for integrating various sensors and libraries. Key components included:
+            </p>
+            <ul>
+                <li><strong>Computer Vision:</strong> OpenMV camera for april tag detection</li>
+                <li><strong>Sensor Fusion:</strong> Fusing readings from both a gyroscope and accelerometer using a Complementary Filter. This was used for forward and inverse kinematics.</li>
+                <li><strong>Motor Control:</strong> PID controllers for precise movement</li>
+            </ul>
+        </div>
+
+        <div class="project-nav">
+            <a href="smart-home-hub.html">← Previous Project</a>
+            <a href="robotic-arm.html">Next Project →</a>
+        </div>
+    </main>
+</body>
+</html>
