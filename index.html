@@ -3,99 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Engineering & Theatre</title>
+    <title>Delia Jasper — Engineering & Creative Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #fafaf9;
-            --bg-secondary: #f5f5f4;
-            --bg-card: #ffffff;
-            --text-primary: #1c1917;
-            --text-secondary: #57534e;
-            --accent-primary: #d6479b;
-            --accent-secondary: #55a840;
-            --border: #e7e5e4;
-            --shadow: rgba(0, 0, 0, 0.05);
+            --bg-void: #0d0d0d;
+            --bg-deep: #1b1b1b;
+            --bg-surface: #171717;
+            --bg-card: #1d1d1d;
+            --bg-card-hover: #2e2e2e;
+            --text-primary: #f3e8f5;
+            --text-secondary: #9e9e9e;
+            --text-dim: #686868;
+            --accent-pink: rgb(206, 70, 133);
+            --accent-pink-dim: rgba(206, 70, 133, 0.12);
+            --accent-pink-glow: rgba(206, 70, 133, 0.25);
+            --accent-green: #4bd339;
+            --accent-green-dim: rgba(57, 211, 83, 0.1);
+            --accent-purple: #9630f0;
+            --border-subtle: rgba(255,255,255,0.05);
+            --border-card: rgba(165, 65, 128, 0.12);
+            --border-green: rgba(57, 211, 83, 0.2);
+            --grid-color: rgba(215, 215, 215, 0.04);
+            --trace-color: rgba(92, 58, 112, 0.15);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            background: var(--bg-main);
+            background: var(--bg-void);
             color: var(--text-primary);
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.7;
-            overflow-x: hidden;
+            overflow-x: clip;
         }
 
-        /* Navigation */
+        /* ===================== CIRCUIT BOARD BACKGROUND ===================== */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Circuit trace SVG overlay */
+        .circuit-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        /* ===================== SCROLL INDICATOR ===================== */
+        #scrollIndicator {
+            position: fixed;
+            top: 0; left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-green));
+            width: 0%;
+            z-index: 1001;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 8px var(--accent-pink);
+        }
+
+        /* ===================== NAV ===================== */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(250, 250, 249, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
+            top: 0; width: 100%;
+            background: rgba(15, 15, 15, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
             z-index: 1000;
-            padding: 1.2rem 2rem;
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .nav-logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-pink);
+            letter-spacing: 0.08em;
+        }
+
+        .nav-logo span {
+            color: var(--text-dim);
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            gap: 2rem;
             align-items: center;
         }
 
         nav a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color 0.2s;
             position: relative;
         }
+
+        nav a:hover { color: var(--accent-pink); }
 
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-primary);
-            transition: width 0.3s ease;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent-pink);
+            box-shadow: 0 0 4px var(--accent-pink);
+            transition: width 0.3s;
         }
 
-        nav a:hover {
-            color: var(--text-primary);
-        }
+        nav a:hover::after { width: 100%; }
 
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Scroll Progress */
-        #scrollIndicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: var(--accent-primary);
-            width: 0%;
-            z-index: 1001;
-            transition: width 0.1s ease;
-        }
-
-        /* Hero Section */
+        /* ===================== HERO ===================== */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -103,176 +147,223 @@
             justify-content: center;
             position: relative;
             padding: 2rem;
-            margin-top: 80px;
+            z-index: 1;
         }
 
         .hero-content {
-            max-width: 1200px;
+            max-width: 1100px;
             width: 100%;
-            text-align: center;
+        }
+
+        .hero-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent-pink);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-label::before {
+            content: '';
+            display: inline-block;
+            width: 24px; height: 1px;
+            background: var(--accent-pink);
+            box-shadow: 0 0 4px var(--accent-pink);
         }
 
         .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 6.5vw, 5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            padding: 0 1rem;
-            animation: fadeInUp 1s ease;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.8rem, 7vw, 6rem);
+            font-weight: 800;
+            line-height: 1.25;
+            padding-bottom: 0.15rem;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
         }
 
-        .hero h1 .highlight {
-            color: var(--accent-primary);
+        .hero h1 .name {
+            color: var(--accent-pink);
+            text-shadow: 0 0 40px rgb(93, 33, 61);
         }
 
-        .hero .subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        .hero h1 .dim {
             color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            animation: fadeInUp 1s ease 0.2s;
-            animation-fill-mode: both;
+            font-weight: 600;
         }
 
-        .role-tags {
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .hero-tags {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.4s;
-            animation-fill-mode: both;
         }
 
         .tag {
-            padding: 0.8rem 1.8rem;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            font-size: 0.95rem;
-            font-weight: 500;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            box-shadow: 0 1px 3px var(--shadow);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 3px;
+            letter-spacing: 0.06em;
+            transition: all 0.25s;
+            cursor: default;
         }
 
-        .tag.engineering {
-            border-color: var(--accent-secondary);
-            color: var(--accent-secondary);
+        .tag.eng {
+            border: 1px solid rgba(57, 211, 83, 0.4);
+            color: var(--accent-green);
+            background: var(--accent-green-dim);
         }
 
-        .tag.engineering:hover {
-            background: var(--accent-secondary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(8, 145, 178, 0.2);
+        .tag.eng:hover {
+            background: rgba(57, 211, 83, 0.18);
+            box-shadow: 0 0 12px rgba(57, 211, 83, 0.2);
         }
 
-        .tag.theatre {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
+        .tag.creative {
+            border: 1px solid rgba(206, 65, 131, 0.884);;
+            color: var(--accent-pink);
+            background: var(--accent-pink-dim);
         }
 
-        .tag.theatre:hover {
-            background: var(--accent-primary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
+        .tag.creative:hover {
+            background: rgba(208, 97, 149, 0.18);
+            box-shadow: 0 0 12px var(--accent-pink-glow);
         }
 
-        /* Section Styling */
+        /* corner decoration */
+        .hero-corner {
+            position: absolute;
+            bottom: 3rem;
+            right: 3rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.25rem;
+        }
+
+        /* ===================== SECTION ===================== */
         section {
-            padding: 5rem 2rem;
-            max-width: 1400px;
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
         .section-header {
-            margin-bottom: 4rem;
-            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent-green);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .section-eyebrow-theatre {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent-pink);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .section-eyebrow::before {
+            content: '//';
+            color: var(--text-dim);
+        }
+
+         .section-eyebrow-theatre::before {
+            content: '//';
+            color: var(--text-dim);
         }
 
         .section-header h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: var(--text-secondary);
-            border-radius: 2px;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
         }
 
         .section-header p {
             color: var(--text-secondary);
-            font-size: 1.15rem;
-            max-width: 700px;
-            margin: 2rem auto 0;
+            font-size: 1rem;
+            max-width: 560px;
+            margin-top: 0.75rem;
+            line-height: 1.8;
         }
 
-        /* Project Grid */
+        /* ===================== PROJECT GRID ===================== */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5px;
+            background: var(--border-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            background: var(--bg-deep);
             padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 1px 3px var(--shadow);
-            cursor: pointer;
             text-decoration: none;
             color: inherit;
             display: block;
+            transition: background 0.25s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .project-card::before {
+        .project-card::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--accent-secondary);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--accent-green);
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+
+        .project-card.theatre-card::after {
+            background: var(--accent-pink);
+            box-shadow: 0 0 8px var(--accent-pink);
         }
 
         .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            border-color: var(--accent-secondary);
+            background: var(--bg-card);
         }
 
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
+        .project-card:hover::after { opacity: 1; }
 
-        .project-card.theatre::before {
-            background: var(--accent-primary);
-        }
-
-        .project-card.theatre:hover {
-            border-color: var(--accent-primary);
-        }
-
-        .project-header {
+        .card-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -280,462 +371,633 @@
             gap: 1rem;
         }
 
-        .project-header h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.4rem;
+        .card-top h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.05rem;
             font-weight: 700;
+            line-height: 1.3;
             color: var(--text-primary);
             flex: 1;
         }
 
-        .project-type {
-            background: var(--accent-secondary);
-            color: white;
-            padding: 0.4rem 0.9rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 500;
+        .card-badge {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            padding: 0.3rem 0.7rem;
+            border-radius: 2px;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .project-type.theatre {
-            background: var(--accent-primary);
+        .card-badge.eng {
+            background: var(--accent-green-dim);
+            color: var(--accent-green);
+            border: 1px solid rgba(57, 211, 83, 0.25);
+        }
+
+        .card-badge.theatre {
+            background: var(--accent-pink-dim);
+            color: var(--accent-pink);
+            border: 1px solid var(--border-card);
         }
 
         .project-card p {
             color: var(--text-secondary);
+            font-size: 0.92rem;
             margin-bottom: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
+            gap: 0.4rem;
         }
 
         .tech-item {
-            background: var(--bg-secondary);
-            padding: 0.4rem 0.9rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            padding: 0.25rem 0.6rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-dim);
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+
+        .theatre-item {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            padding: 0.25rem 0.6rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-dim);
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+
+        .project-card:hover .tech-item {
+            border-color: rgba(57, 211, 83, 0.18);
             color: var(--text-secondary);
-            font-weight: 500;
-            border: 1px solid var(--border);
-            transition: all 0.2s ease;
         }
 
-        .tech-item:hover {
-            background: var(--bg-main);
-            color: var(--text-primary);
-            border-color: var(--accent-primary);
+        .project-card:hover .theatre-item {
+            border-color: rgba(206, 70, 133, 0.18);
+            color: var(--text-secondary);
         }
 
-        /* About Section */
-        .about-content {
+        /* ===================== ABOUT ===================== */
+        .about-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
             align-items: start;
         }
 
         @media (max-width: 900px) {
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
+            .about-layout { grid-template-columns: 1fr; }
         }
 
-        .about-text {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 3px var(--shadow);
+        .about-image-wrap {
+            position: relative;
         }
 
-        .about-text h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
+        .about-image-wrap img {
+            width: 100%;
+            border-radius: 4px;
+            display: block;
+            filter: grayscale(20%) contrast(1.05);
+            border: 1px solid var(--border-card);
         }
 
-        .about-text p {
+        /* decorative corner brackets */
+        .about-image-wrap::before,
+        .about-image-wrap::after {
+            content: '';
+            position: absolute;
+            width: 20px; height: 20px;
+            border-color: var(--accent-pink);
+            border-style: solid;
+            z-index: 2;
+        }
+
+        .about-image-wrap::before {
+            top: -6px; left: -6px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .about-image-wrap::after {
+            bottom: -6px; right: -6px;
+            border-width: 0 2px 2px 0;
+        }
+
+        .about-text-block {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .about-text-header {
+            padding: 1rem 1.5rem;
+            background: rgba(255, 0, 174, 0.05);
+            border-bottom: 1px solid var(--border-card);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent-pink);
+            letter-spacing: 0.1em;
+        }
+
+        .about-text-body {
+            padding: 1.75rem;
+        }
+
+        .about-text-body p {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
+            font-size: 0.97rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
         }
 
-        .about-text p:last-child {
-            margin-bottom: 0;
+        .about-text-body p:last-child { margin-bottom: 0; }
+
+        /* ===================== SKILLS ===================== */
+        .skills-block {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 2rem;
         }
 
-        .skills-area {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 3px var(--shadow);
+        .skills-block-header {
+            padding: 1rem 1.5rem;
+            background: rgba(57, 211, 83, 0.05);
+            border-bottom: 1px solid var(--border-green);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent-green);
+            letter-spacing: 0.1em;
         }
 
-        .skills-list {
-            list-style: none;
-        }
-
-        .skills-list li {
-            padding: 1.2rem;
-            border-bottom: 1px solid var(--border);
+        .skill-row {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
+            gap: 1rem;
+            align-items: baseline;
         }
 
-        .skills-list li:last-child {
-            border-bottom: none;
+        .skill-row:last-child { border-bottom: none; }
+
+        .skill-key {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            min-width: 160px;
+            flex-shrink: 0;
         }
 
-        .skills-list li:hover {
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            padding-left: 1.5rem;
-        }
-
-        .skill-category {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--accent-primary);
-        }
-
-        .skills-list li span:last-child {
+        .skill-val {
+            font-size: 0.88rem;
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        /* Contact Section */
+        /* ===================== CONTACT ===================== */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1px;
+            background: var(--border-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            overflow: hidden;
             margin-top: 3rem;
         }
 
         .contact-item {
-            background: var(--bg-card);
+            background: var(--bg-deep);
             padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
             text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 1px 3px var(--shadow);
+            transition: background 0.2s;
         }
 
-        .contact-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            border-color: var(--accent-primary);
-        }
+        .contact-item:hover { background: var(--bg-card); }
 
         .contact-item h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
         }
 
         .contact-item a {
-            color: var(--accent-primary);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-pink);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: all 0.2s ease;
-            display: inline-block;
+            transition: all 0.2s;
         }
 
         .contact-item a:hover {
-            color: var(--accent-secondary);
+            color: var(--text-primary);
+            text-shadow: 0 0 8px var(--accent-pink);
         }
 
-        /* Footer */
+        /* ===================== FOOTER ===================== */
         footer {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            padding: 3rem 2rem;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            color: var(--text-secondary);
+            padding: 2.5rem;
+            border-top: 1px solid var(--border-subtle);
+            background: var(--bg-void);
         }
 
         footer p {
-            font-size: 1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* ===================== DIVIDER ===================== */
+        .section-divider {
+            position: relative;
+            z-index: 1;
+            border: none;
+            border-top: 1px solid var(--border-subtle);
+            margin: 0 2rem;
         }
 
-        /* Responsive adjustments */
+        /* ===================== CIRCUIT DECORATION ===================== */
+        /* Small node dots at circuit intersections */
+        .circuit-node {
+            position: absolute;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--accent-pink);
+            box-shadow: 0 0 6px var(--accent-pink);
+            opacity: 0.5;
+        }
+
+        /* ===================== ANIMATIONS ===================== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero-label { animation: fadeUp 0.8s ease both; }
+        .hero h1    { animation: fadeUp 0.8s ease 0.1s both; }
+        .hero-sub   { animation: fadeUp 0.8s ease 0.2s both; }
+        .hero-tags  { animation: fadeUp 0.8s ease 0.3s both; }
+
+        .cursor {
+            display: inline-block;
+            width: 2px; height: 1em;
+            background: var(--accent-pink);
+            margin-left: 2px;
+            vertical-align: middle;
+            animation: blink 1.2s step-end infinite;
+        }
+
+        /* ===================== RESPONSIVE ===================== */
         @media (max-width: 768px) {
-            nav ul {
-                gap: 1.5rem;
-            }
-
-            .hero {
-                margin-top: 100px;
-            }
-
-            section {
-                padding: 3rem 1.5rem;
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+            section { padding: 4rem 1.25rem; }
+            .project-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .hero-corner { display: none; }
+            nav ul { gap: 1.25rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Circuit traces SVG overlay -->
+    <svg class="circuit-overlay" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <defs>
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+        </defs>
+        <!-- Horizontal traces -->
+        <line x1="0" y1="200" x2="18%" y2="200" stroke="#d06195" stroke-width="1" opacity="0.2" filter="url(#glow)"/>
+        <circle cx="18%" cy="200" r="3" fill="#d06195" opacity="0.4"/>
+        <line x1="18%" y1="200" x2="18%" y2="320" stroke="#d06195" stroke-width="1" opacity="0.2" filter="url(#glow)"/>
+        <line x1="18%" y1="320" x2="32%" y2="320" stroke="#d06195" stroke-width="1" opacity="0.2"/>
+        <circle cx="32%" cy="320" r="3" fill="#d06195" opacity="0.35"/>
+
+        <line x1="100%" y1="450" x2="78%" y2="450" stroke="#39d353" stroke-width="1" opacity="0.18" filter="url(#glow)"/>
+        <circle cx="78%" cy="450" r="3" fill="#39d353" opacity="0.4"/>
+        <line x1="78%" y1="450" x2="78%" y2="600" stroke="#39d353" stroke-width="1" opacity="0.18"/>
+        <line x1="78%" y1="600" x2="60%" y2="600" stroke="#39d353" stroke-width="1" opacity="0.18"/>
+        <circle cx="60%" cy="600" r="3" fill="#39d353" opacity="0.3"/>
+
+        <line x1="0" y1="700" x2="25%" y2="700" stroke="#d06195" stroke-width="1" opacity="0.15"/>
+        <circle cx="25%" cy="700" r="2.5" fill="#d06195" opacity="0.3"/>
+
+        <line x1="100%" y1="900" x2="88%" y2="900" stroke="#39d353" stroke-width="1" opacity="0.12"/>
+        <circle cx="88%" cy="900" r="2.5" fill="#39d353" opacity="0.25"/>
+        <line x1="88%" y1="900" x2="88%" y2="1050" stroke="#39d353" stroke-width="1" opacity="0.12"/>
+
+        <!-- Small component pads -->
+        <rect x="15%" y="193" width="12" height="14" fill="none" stroke="#d06195" stroke-width="1" opacity="0.3"/>
+        <rect x="75%" y="443" width="12" height="14" fill="none" stroke="#39d353" stroke-width="1" opacity="0.25"/>
+        <rect x="86%" y="893" width="12" height="14" fill="none" stroke="#39d353" stroke-width="1" opacity="0.2"/>
+    </svg>
+
     <div id="scrollIndicator"></div>
 
     <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#engineering">Tech</a></li>
-            <li><a href="#theatre">Creative</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="nav-inner">
+            <div class="nav-logo">dj<span>.portfolio</span></div>
+            <ul>
+                <li><a href="#home">home</a></li>
+                <li><a href="#engineering">tech</a></li>
+                <li><a href="#theatre">creative</a></li>
+                <li><a href="#about">about</a></li>
+                <li><a href="#contact">contact</a></li>
+            </ul>
+        </div>
     </nav>
 
+    <!-- ================= HERO ================= -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Hi, I'm <span class="highlight">Delia</span>, I do engineering, entertainment production, and other things.</h1>
-            <p class="subtitle">
-                I do things
+            <div class="hero-label">Personal Portfolio</div>
+            <h1>
+                Hi, I'm <span class="name">Delia</span>,<br>
+                <span class="dim">engineer & creative hobbyist.</span>
+            </h1>
+            <p class="hero-sub">
+                I am a junior at Worcester Polytechnic Institute (WPI) double majoring in Electrical & Computer Engineering and Robotics Engineering. I am a dedicated student and have found my academic niche in Electrical/Computer Engineering, but I also enjoy working on my creative projects in my free time.
             </p>
-            <div class="role-tags">
-                <div class="tag engineering">Tech</div>
-                <div class="tag theatre">Creative</div>
+            <div class="hero-tags">
+                <div class="tag eng">Electrical Engineering</div>
+                <div class="tag eng">Coding</div>
+                <div class="tag eng">Computer Engineering</div>
+                <div class="tag eng">Robotics</div>
+                <div class="tag creative">Technical Theatre</div>
+                <div class="tag creative">Lighting Design</div>
+                <div class="tag creative">Tinkering & Crafting</div>
             </div>
+        </div>
+        <div class="hero-corner"> ECE &amp; RBE @ WPI
         </div>
     </section>
 
+    <hr class="section-divider">
+
+    <!-- ================= ENGINEERING ================= -->
     <section id="engineering">
         <div class="section-header">
-            <h2>Tech Based Projects</h2>
-            <p>Building things that solve real problems and occasionally create interesting new ones.</p>
+            <div class="section-eyebrow">Technical Projects</div>
+            <h2>Engineering Work</h2>
+            <p>Building systems from the ground up incorperating circuits, code, and everything in between.</p>
         </div>
         <div class="project-grid">
-            <a href="projects/romi.html" class="project-card">
-                <div class="project-header">
-                    <h3>Small Mobile Robot - RBE 2002</h3>
-                    <span class="project-type">Robotics</span>
+
+            <a href="TrActor.html" class="project-card">
+                <div class="card-top">
+                    <h3>TrActor: Ultra-Wide Band Devices for Automated Stage Management</h3>
+                    <span class="card-badge eng">MQP</span>
                 </div>
-                <p>Developed C++ code for a small mobile robot using concepts such as forward and inverse kinematics, sensor fusion with a gyroscope and accelerometer via a complementary filter, and computer vision to navigate a field and lift specific objects.</p>
+                <p>
+                    TrActor is a low-cost wearable Ultra-Wide Band (UWB) tracking system that digitally records actors' movements, providing a live stage map to improve collaboration, interface with technical systems, and replace traditional paper notes for production teams.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-item">C++</span>
+                    <span class="tech-item">Embedded Systems</span>
+                    <span class="tech-item">UWB</span>
+                    <span class="tech-item">Control Theory</span>
+                </div>
+            </a>
+
+            <a href="tamagotchi.html" class="project-card">
+                <div class="card-top">
+                    <h3>Terminal-Based Tamagotchi</h3>
+                    <span class="card-badge eng">Computer Eng.</span>
+                </div>
+                <p>Designed and implemented a terminal-based Tamagotchi game in C, with terminal based input/output support and simple assembly language instructions. This game operates on a Finite State Machine.</p>
+                <div class="tech-stack">
+                    <span class="tech-item">C</span>
+                    <span class="tech-item">Linux Terminal</span>
+                    <span class="tech-item">Basic Assembly</span>
+                </div>
+            </a>
+
+            <a href="fpga_calc.html" class="project-card">
+                <div class="card-top">
+                    <h3>FPGA Four-Function Calculator</h3>
+                    <span class="card-badge eng">Computer Eng.</span>
+                </div>
+                <p>Designed a four-function calculator in Verilog on an FPGA, implementing arithmetic logic units, display drivers, and input handling in hardware description language.</p>
+                <div class="tech-stack">
+                    <span class="tech-item">Verilog</span>
+                    <span class="tech-item">FPGAs</span>
+                    <span class="tech-item">Digital Logic</span>
+                </div>
+            </a>
+
+            <a href="romi.html" class="project-card">
+                <div class="card-top">
+                    <h3>Small Mobile Robot — RBE 2002</h3>
+                    <span class="card-badge eng">Robotics</span>
+                </div>
+                <p>C++ implementation on a Pololu Romi platform: kinematics, complementary filter for sensor fusion (gyro + accelerometer), AprilTag-based navigation, and PID motor control.</p>
                 <div class="tech-stack">
                     <span class="tech-item">C++</span>
                     <span class="tech-item">Arduino</span>
                     <span class="tech-item">OpenMV</span>
-                    <span class="tech-item">Filters</span>
                     <span class="tech-item">Kinematics</span>
+                    <span class="tech-item">PID</span>
                 </div>
             </a>
 
-            <a href="projects/smart-home-hub.html" class="project-card">
-                <div class="project-header">
-                    <h3>FPGA Four-Function Calculator</h3>
-                    <span class="project-type">Electrical</span>
-                </div>
-                <p>Created a central control system for home automation that integrates lighting, temperature, and security. Provides unified control through a custom web interface.</p>
-                <div class="tech-stack">
-                    <span class="tech-item">Verilog</span>
-                    <span class="tech-item">FPGAs</span>
-                    <span class="tech-item">Logic Design</span>
-                </div>
-            </a>
-
-            <a href="projects/robotic-arm.html" class="project-card">
-                <div class="project-header">
+            <a href="fufu-pot.html" class="project-card">
+                <div class="card-top">
                     <h3>Fufu Pot</h3>
-                    <span class="project-type">Prototyping</span>
+                    <span class="card-badge eng">Prototyping</span>
                 </div>
-                <p>Built a 6-DOF robotic arm with inverse kinematics control and haptic feedback. Implemented precision control for pick-and-place operations with sub-millimeter accuracy.</p>
+                <p>Rapid prototyping project combining CAD, 3D printing, and servo integration to produce a functional mechanical device from concept to physical prototype.</p>
                 <div class="tech-stack">
                     <span class="tech-item">CAD</span>
-                    <span class="tech-item">Rapid Prototyping & Design</span>
-                    <span class="tech-item">Servos</span>
                     <span class="tech-item">3D Printing</span>
-                </div>
-            </a>
-
-            <a href="projects/smart-grid.html" class="project-card">
-                <div class="project-header">
-                    <h3>Electrician's Work</h3>
-                    <span class="project-type">Electrical</span>
-                </div>
-                <p>Created a machine learning model to predict power grid failures using historical sensor data. Improved prediction accuracy by 40% through feature engineering and ensemble methods.</p>
-                <div class="tech-stack">
-                    <span class="tech-item">Python</span>
-                    <span class="tech-item">TensorFlow</span>
-                    <span class="tech-item">Signal Processing</span>
-                    <span class="tech-item">Data Analysis</span>
+                    <span class="tech-item">Servos</span>
+                    <span class="tech-item">Mechanical Design</span>
                 </div>
             </a>
         </div>
     </section>
+    <hr class="section-divider">
 
+    <!-- ================= THEATRE ================= -->
     <section id="theatre">
         <div class="section-header">
-            <h2>Creative Projects</h2>
-            <p>Even if my major is in STEM, and I greatly enjoy it. I still have a passion for the arts and creative expression. Here are some of my more creative projects and archives.</p>
+            <div class="section-eyebrow-theatre">Creative Projects</div>
+            <h2>Theatre &amp; Creative Work</h2>
+            <p>Building upon years of experience in theatre and archiving previous productions, along with other creative hobbies.</p>
         </div>
         <div class="project-grid">
-            <a href="projects/hamlet-lighting.html" class="project-card theatre">
-                <div class="project-header">
-                    <h3>Alice By Heart - Stage Manager</h3>
-                    <span class="project-type theatre">Management</span>
+
+            <a href="alice-by-heart.html" class="project-card theatre-card">
+                <div class="card-top">
+                    <h3>Alice By Heart — Stage Manager</h3>
+                    <span class="card-badge theatre">Management</span>
                 </div>
-                <p>Acted as stage manager for a WPI club production of <i>Alice by Heart</i>, overseeing rehearsals, coordinating between departments, and ensuring smooth performances. Managed a team of ~60 people across all departments to ensure a successful production.</p>
+                <p>Stage managed a WPI club production of <em>Alice by Heart</em>, coordinating ~60 people across all production departments through rehearsals and performance run.</p>
                 <div class="tech-stack">
-                    <span class="tech-item">Documentation</span>
-                    <span class="tech-item">Communication</span>
-                    <span class="tech-item">Production Management</span>
-                    <span class="tech-item">High Level Project Management</span>
+                    <span class="theatre-item">Documentation</span>
+                    <span class="theatre-item">Communication</span>
+                    <span class="theatre-item">Production Mgmt</span>
+                    <span class="theatre-item">Scheduling</span>
+
                 </div>
             </a>
 
-            <a href="projects/importance-of-earnest.html" class="project-card theatre">
-                <div class="project-header">
-                    <h3>The Importance of Being Earnest - Stage Manager</h3>
-                    <span class="project-type theatre">Management</span>
+            <a href="importance-of-earnest.html" class="project-card theatre-card">
+                <div class="card-top">
+                    <h3>The Importance of Being Earnest — Stage Manager</h3>
+                    <span class="card-badge theatre">HUA Practicum</span>
                 </div>
-                <p>Completed as my WPI HUA Practicum. Managed the production and rehearsal room for the WPI HUA Drama Theatre's fall production of <i>The Importance of Being Earnest</i> by Oscar Wilde. Oversaw rehearsals, coordinated between departments, and ensured smooth performances. Worked with multiple technical departments and oversaw three assistant stage managers to ensure production quality.</p>
+                <p>WPI HUA Practicum production. Managed rehearsal room and production for Oscar Wilde's classic, overseeing three ASMs and multiple technical departments through a 4-month process.</p>
                 <div class="tech-stack">
                     <span class="tech-item">HUA Practicum</span>
-                    <span class="tech-item">Documentation</span>
-                    <span class="tech-item">Communication</span>
+                    <span class="tech-item">ASM Supervision</span>
+                    <span class="tech-item">Technical Coordination</span>
                 </div>
             </a>
 
-            <a href="projects/crucible-tech-director.html" class="project-card theatre">
-                <div class="project-header">
-                    <h3>8 Minutes Left - Lighting Designer</h3>
-                    <span class="project-type theatre">Theatrical Lighting</span>
+            <a href="#" class="project-card theatre-card">
+                <div class="card-top">
+                    <h3>8 Minutes Left — Lighting Designer</h3>
+                    <span class="card-badge theatre">Lighting</span>
                 </div>
-                <p>Designed and implemented lighting for a WPI club production of <i>8 Minutes Left</i> by E.B. Lee. Created custom lighting designs and plots using ETC EOS consoles and Vectorworks software. Coordinated with directors, other designers, and multiple lighting crew members to ensure visual consistency, a completed plot, and creative intent.</p>
+                <p>Designed lighting for E.B. Lee's <em>8 Minutes Left</em>. Created full lighting plots in Vectorworks, programmed ETC EOS console, and coordinated with directors and designers on visual intent.</p>
                 <div class="tech-stack">
                     <span class="tech-item">ETC EOS</span>
                     <span class="tech-item">Vectorworks</span>
-                    <span class="tech-item">Design</span>
+                    <span class="tech-item">Design and Iteration</span>
                 </div>
             </a>
 
-            <a href="projects/custom-dmx-controller.html" class="project-card theatre">
-                <div class="project-header">
-                    <h3>Ride the Cyclone - Stage Manager</h3>
-                    <span class="project-type theatre">Management</span>
+            <a href="#" class="project-card theatre-card">
+                <div class="card-top">
+                    <h3>Ride the Cyclone — Stage Manager</h3>
+                    <span class="card-badge theatre">Management</span>
                 </div>
-                <p>Led the production as stage manager, overseeing rehearsals, coordinating between departments, and ensuring smooth performances. Worked with a team of ~50 people on this produciton, including cast members, designers, and technical crew and facilitated communication.</p>
+                <p>Stage managed a ~50-person production, facilitating communication between cast, designers, and technical crew throughout the full production process.</p>
                 <div class="tech-stack">
-                    <span class="tech-item">Documentation</span>
+                    <span class="tech-item">Large-Scale Mgmt</span>
                     <span class="tech-item">Communication</span>
-                    <span class="tech-item">Large Project Management</span>
+                    <span class="tech-item">Working Under Pressure</span>
+                    <span class="tech-item">Scheduling</span>
+
                 </div>
             </a>
 
-            <a href="projects/custom-dmx-controller.html" class="project-card theatre">
-                <div class="project-header">
+            <a href="#" class="project-card theatre-card">
+                <div class="card-top">
                     <h3>Pre-College Theatre</h3>
-                    <span class="project-type theatre">Archive</span>
+                    <span class="card-badge theatre">Archive</span>
                 </div>
-                <p>Archive of my pre-college theatre productions and the roles I had on them. Includes information on my theatre experiences from high school, including roles such as student director, stage manager, and lighting designer.</p>
-                </a>
-
-            <a href="projects/custom-dmx-controller.html" class="project-card theatre">
-                <div class="project-header">
-                    <h3>Creative Hobbies</h3>
-                    <span class="project-type theatre">Archive</span>
+                <p>Archive of past theatre experience, including roles as student director, stage manager, and lighting designer across multiple productions.</p>
+                <div class="tech-stack">
+                    <span class="tech-item">Archive</span>
                 </div>
-                <p>A collection of creative hobbies and projects that I've worked on over the years. Includes some crochet projects along with an assortment of other things.</p>
             </a>
+
+            <a href="#" class="project-card theatre-card">
+                <div class="card-top">
+                    <h3>Creative Hobbies</h3>
+                    <span class="card-badge theatre">Archive</span>
+                </div>
+                <p>A collection of creative projects over the years — crochet, design experiments, and various other creative endeavors.</p>
+                <div class="tech-stack">
+                    <span class="tech-item">Crochet</span>
+                    <span class="tech-item">Making</span>
+                </div>
+            </a>
+
         </div>
     </section>
 
+    <hr class="section-divider">
+
+    <!-- ================= ABOUT ================= -->
     <section id="about">
         <div class="section-header">
+            <div class="section-eyebrow">Background</div>
             <h2>About Me</h2>
         </div>
-        <div class="about-content">
-            <img src="../images/Headshot.jpg" 
-            alt="Headshot of Delia, a woman in a black suit." 
-            class="project-image"
-            style="width: 100%; height: auto; object-fit: cover;">
-            <div class="about-text">
-                <h3>Engineer & Creative</h3>
-                <p>
-                    Hello! I'm Delia, I'm currently a student at Worcester Polytechnic Institute (WPI) double majoring in Electrical & Computer Engineering and Robotics Engineering. I've been around technology my entire life and fell in love with computers at a young age. I have also been doing theatre for almost 15 years, starting at age 6, and never stopping. I primarily stage manage, but have also done lighting design, producing, and just about anything else you can think of at least once.
-                </p>
-                <p>
-                    My engineering experience is broad, as my robotics engineering degree has deepened my knowledge of Mechanical Engineering, Electrical & Computer Engineering, and Computer Science. Through my Electrical & Computer Engineering major, I have truly found my niche in embedded systems and low-level programming. I plan to expand my knowledge in PCB design and power systems as well.
-                </p>
-                <p>
-                    I am looking forward to entering industry and working in a field that allows for my technical and non-technical skills to stand out. I love the fast-paced, collaborative environment of theatre, and it has taught me how to handle large scale projects and manage teams of over 50 people. I hope to find a role that allows me to combine my passion for engineering while still allowing me to be creative. 
-                </p>
+        <div class="about-layout">
+            <div class="about-image-wrap">
+                <img src="images/headshot.jpg" alt="Headshot of Delia, a woman in a black suit.">
             </div>
-            <div class="skills-area">
-                <ul class="skills-list">
-                    <li>
-                        <span class="skill-category">Engineering</span>
-                        <span>Embedded Systems, Robotics, PCB Design, Power Systems</span>
-                    </li>
-                    <li>
-                        <span class="skill-category">Software</span>
-                        <span>SolidWorks, Onshape, KiCad, LTspice, AutoCAD, Blender, FMX, Figma</span>
-                    </li>
-                    <li>
-                        <span class="skill-category">Programming Languages</span>
-                        <span>C, C++, MATLAB, Python, Java, Verilog, SQL, TypeScript, JavaScript</span>
-                    </li>
-                    <li>
-                        <span class="skill-category">Theatre Tech</span>
-                        <span>Lighting, Vectorworks, Sound, EOS</span>
-                    </li>
-                </ul>
+            <div>
+                <div class="about-text-block">
+                    <div class="about-text-header">// bio.md</div>
+                    <div class="about-text-body">
+                        <p>I'm Delia, a student at Worcester Polytechnic Institute double majoring in Electrical &amp; Computer Engineering and Robotics Engineering. I've been around technology my entire life and fell in love with computers at a young age.</p>
+                        <p>My engineering work spans embedded systems, robotics, and low-level programming. My Robotics Engineering degree has deepened my knowledge across mechanical, electrical, and software domains — and I'm actively expanding into PCB design and power systems.</p>
+                        <p>I've been doing theatre for almost 15 years, starting at age 6. I primarily stage manage — which means managing projects at 60+ people scale, coordinating interdisciplinary teams under tight deadlines. I also do lighting design and producing. Theatre has genuinely shaped how I think about systems, communication, and execution under pressure.</p>
+                        <p>Currently, I am in the process of completing my undergraduate degree, and evaluating if graduate school is right for me. I'm looking for a future role where technical depth and collaborative leadership can coexist.</p>
+                    </div>
+                </div>
+                <div class="skills-block">
+                    <div class="skills-block-header">// skills.json</div>
+                    <div class="skill-row">
+                        <span class="skill-key">engineering:</span>
+                        <span class="skill-val">Embedded Systems, Robotics, PCB Design, Power Systems</span>
+                    </div>
+                    <div class="skill-row">
+                        <span class="skill-key">software:</span>
+                        <span class="skill-val">SolidWorks, Onshape, KiCad, LTspice, AutoCAD, Blender, Figma</span>
+                    </div>
+                    <div class="skill-row">
+                        <span class="skill-key">languages:</span>
+                        <span class="skill-val">C, C++, MATLAB, Python, Java, Verilog, SQL, TypeScript, JavaScript</span>
+                    </div>
+                    <div class="skill-row">
+                        <span class="skill-key">theatre_tech:</span>
+                        <span class="skill-val">ETC EOS, Vectorworks, Lighting Design, Sound</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <hr class="section-divider">
+
+    <!-- ================= CONTACT ================= -->
     <section id="contact">
         <div class="section-header">
+            <div class="section-eyebrow">Connect</div>
             <h2>Get In Touch</h2>
-            <p>Interested in collaborating? Want to chat about tech, theatre, or or something else?</p>
+            <p>Interested in collaborating, or want to chat?</p>
         </div>
         <div class="contact-grid">
             <div class="contact-item">
                 <h3>Email</h3>
-                <a href="mailto:deliatjasper@gmail.com"><span class="__cf_email__" data-cfemail="5f373a3333301f3a273e322f333a713c3032">deliatjasper@gmail.com</span></a>
+                <a href="mailto:deliatjasper@gmail.com">deliatjasper@gmail.com</a>
             </div>
             <div class="contact-item">
                 <h3>GitHub</h3>
-                <a href="https://github.com/yourusername" target="_blank">@dtjasper</a>
+                <a href="https://github.com/dtjasper" target="_blank">@dtjasper</a>
             </div>
             <div class="contact-item">
                 <h3>LinkedIn</h3>
-                <a href="https:/www.linkedin.com/in/delia-jasper" target="_blank">Delia Jasper</a>
+                <a href="https://www.linkedin.com/in/delia-jasper" target="_blank">delia-jasper</a>
             </div>
             <div class="contact-item">
                 <h3>Resume</h3>
@@ -745,46 +1007,47 @@
     </section>
 
     <footer>
-        <p>© 2026 Delia Jasper.</p>
+        <p>© 2026 Delia Jasper &nbsp;·&nbsp; Built with HTML/CSS/JS &nbsp;·&nbsp; ECE &amp; RBE @ WPI</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Scroll indicator
         window.addEventListener('scroll', () => {
-            const scrollIndicator = document.getElementById('scrollIndicator');
-            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (window.scrollY / windowHeight) * 100;
-            scrollIndicator.style.width = scrolled + '%';
+            const el = document.getElementById('scrollIndicator');
+            const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            el.style.width = (window.scrollY / h * 100) + '%';
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        // Smooth scroll for nav
+        document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Add animation on scroll for project cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        // Staggered card reveal on scroll
+        const cards = document.querySelectorAll('.project-card, .contact-item');
+        cards.forEach(c => {
+            c.style.opacity = '0';
+            c.style.transform = 'translateY(16px)';
+            c.style.transition = 'opacity 0.5s ease, transform 0.5s ease, background 0.25s';
+        });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
                 if (entry.isIntersecting) {
                     setTimeout(() => {
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
-                    }, index * 100);
-                    observer.unobserve(entry.target);
+                    }, i * 60);
+                    io.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 
-
+        cards.forEach(c => io.observe(c));
+    </script>
+</body>
+</html>

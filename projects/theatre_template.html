@@ -84,7 +84,7 @@
 
         .back-link::before { content: '←'; }
 
-        .back-link:hover { color: var(--accent-pink); }
+        .back-link:hover { color: var(--accent-green); }
 
         .nav-logo {
             font-family: 'IBM Plex Mono', monospace;
@@ -241,7 +241,7 @@
             content: '//';
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.85rem;
-            color: var(--accent-green);
+            color: var(--accent-pink);
             font-weight: 400;
         }
 
@@ -264,7 +264,7 @@
         }
 
         .content-section li::marker {
-            color: var(--accent-green);
+            color: var(--accent-pink);
         }
 
         .content-section strong {
@@ -284,7 +284,7 @@
         .project-nav a {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.8rem;
-            color: var(--accent-pink);
+            color: var(--accent-green);
             text-decoration: none;
             letter-spacing: 0.04em;
             transition: all 0.2s;
@@ -311,60 +311,52 @@
     <main>
         <div class="project-header">
             <div class="project-eyebrow">
-                <span class="project-badge eng">Robotics</span>
+                <span class="project-badge theatre">Robotics</span>
+                <!-- change class to "theatre" for theatre projects -->
             </div>
-            <h1>Pololu Romi Robot</h1>
+            <h1>Project Title</h1>
             <p class="project-summary">
-                A small robot that uses computer vision, kinematics, and sensor fusion for autonomous navigation and task completion.
+                A short 1–2 sentence summary of what this project is and why it matters.
             </p>
             <div class="tech-stack">
-                <span class="tech-item">Arduino</span>
-                <span class="tech-item">OpenMV</span>
-                <span class="tech-item">Filters</span>
-                <span class="tech-item">Kinematics</span>
+                <span class="tech-item">Tech 1</span>
+                <span class="tech-item">Tech 2</span>
+                <span class="tech-item">Tech 3</span>
             </div>
         </div>
 
         <!-- Replace with actual image: -->
         <!-- <img src="images/your-image.jpg" alt="Description" class="project-image"> -->
-        <div class="project-image-container">
-            <img src="../images/romi-image.jpg" alt="Photo of romi robot" class="project-image">
-        </div>
+        <div class="image-placeholder">[ project image ]</div>
 
         <div class="details-grid">
             <div class="detail-card">
                 <h3>Duration</h3>
-                <p>2 months</p>
+                <p>X months</p>
             </div>
             <div class="detail-card">
                 <h3>Role</h3>
-                <p>Student</p>
+                <p>Your Role</p>
             </div>
             <div class="detail-card">
                 <h3>Team Size</h3>
-                <p>2-3 members</p>
+                <p>X members</p>
             </div>
         </div>
 
         <div class="content-section">
             <h2>Overview</h2>
             <p>
-                This was a long-term class project for WPI's RBE2002 course, which focuses on sensing. We used a Pololi Romi robot, and completed tasks such as lifting a basket and weighing it, navigating to specific coordinates based on AprilTag markers, and applying inverse and forward kinematics for movement tracking.
-            </p>
-            <p>
-                Major concepts use include PID control, op-amps and filters, computer vision, and state based control.
+                What is this project and what problem does it solve?
             </p>
         </div>
 
         <div class="content-section">
             <h2>Technical Approach</h2>
-            <p>
-                The romi was coded using C++, which allowed for integrating various sensors and libraries. Key components included:
-            </p>
+            <p>How did you build it? What were the key technical decisions?</p>
             <ul>
-                <li><strong>Computer Vision:</strong> OpenMV camera for april tag detection</li>
-                <li><strong>Sensor Fusion:</strong> Fusing readings from both a gyroscope and accelerometer using a Complementary Filter. This was used for forward and inverse kinematics.</li>
-                <li><strong>Motor Control:</strong> PID controllers for precise movement</li>
+                <li><strong>Component 1:</strong> Description</li>
+                <li><strong>Component 2:</strong> Description</li>
             </ul>
         </div>
 

@@ -3,278 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Name - Portfolio</title>
+    <title>Portfolio — Delia Jasper</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #fafaf9;
-            --bg-secondary: #f5f5f4;
-            --bg-card: #ffffff;
-            --text-primary: #1c1917;
-            --text-secondary: #57534e;
-            --accent-primary: #d6479b;
-            --accent-secondary: #55a840;
-            --border: #e7e5e4;
-            --shadow: rgba(0, 0, 0, 0.05);
+           --bg-void: #0d0d0d;
+            --bg-deep: #1b1b1b;
+            --bg-surface: #171717;
+            --bg-card: #1d1d1d;
+            --bg-card-hover: #2e2e2e;
+            --text-primary: #f3e8f5;
+            --text-secondary: #9e9e9e;
+            --text-dim: #4a5568;
+            --accent-pink: rgb(206, 70, 133);
+            --accent-pink-dim: rgba(206, 70, 133, 0.12);
+            --accent-pink-glow: rgba(206, 70, 133, 0.25);
+             --accent-green: #4bd339;
+            --accent-green-dim: rgba(57, 211, 83, 0.1);
+            --accent-purple: #9630f0;
+            --border-subtle: rgba(255,255,255,0.05);
+            --border-green: rgba(57, 211, 83, 0.2);
+            --grid-color: rgba(215, 215, 215, 0.04);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            background: var(--bg-main);
+            background: var(--bg-void);
             color: var(--text-primary);
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.7;
         }
 
-        /* Navigation */
-        nav {
+        body::before {
+            content: '';
             position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(250, 250, 249, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 1.2rem 2rem;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .nav-content {
-            max-width: 1400px;
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(8, 12, 16, 0.93);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 1000;
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            height: 60px;
         }
 
         .back-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
             color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 500;
+            letter-spacing: 0.06em;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: all 0.3s ease;
+            transition: color 0.2s;
         }
 
-        .back-link:hover {
-            color: var(--accent-primary);
-            transform: translateX(-4px);
+        .back-link::before { content: '←'; }
+
+        .back-link:hover { color: var(--accent-green); }
+
+        .nav-logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-dim);
         }
 
-        .back-link::before {
-            content: '←';
-            font-size: 1.2rem;
-        }
-
-        /* Main Content */
+        /* MAIN */
         main {
+            position: relative;
+            z-index: 1;
             max-width: 900px;
             margin: 0 auto;
-            padding: 8rem 2rem 4rem;
+            padding: 7rem 2rem 5rem;
         }
 
-        .project-header {
-            margin-bottom: 3rem;
+        /* PROJECT HEADER */
+        .project-header { margin-bottom: 3rem; }
+
+        .project-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
         }
 
-        .project-type {
-            display: inline-block;
-            background: var(--accent-secondary);
-            color: white;
-            padding: 0.4rem 0.9rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
+        .project-badge {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2px;
+            text-transform: uppercase;
         }
 
-        .project-type.theatre {
-            background: var(--accent-primary);
+        .project-badge.eng {
+            background: var(--accent-green-dim);
+            color: var(--accent-green);
+            border: 1px solid var(--border-green);
+        }
+
+        .project-badge.theatre {
+            background: var(--accent-pink-dim);
+            color: var(--accent-pink);
+            border: 1px solid var(--border-card);
         }
 
         h1 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Syne', sans-serif;
             font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
             margin-bottom: 1rem;
-            line-height: 1.2;
         }
 
         .project-summary {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 680px;
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 3rem;
+            gap: 0.4rem;
         }
 
         .tech-item {
-            background: var(--bg-secondary);
-            padding: 0.4rem 0.9rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            border: 1px solid var(--border);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            padding: 0.3rem 0.7rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-dim);
+            border-radius: 2px;
         }
 
-        /* Image Placeholder */
+        /* IMAGES */
         .project-image {
             width: 100%;
-            height: 400px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin-bottom: 3rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-card);
+            margin-bottom: 2rem;
+            display: block;
+            position: relative;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 360px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
-            font-style: italic;
+            color: var(--text-dim);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
         }
 
-        /* Content Sections */
-        .content-section {
-            margin-bottom: 3rem;
+        /* DETAILS GRID */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1px;
+            background: var(--border-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 2.5rem 0;
         }
+
+        .detail-card {
+            background: var(--bg-surface);
+            padding: 1.25rem 1.5rem;
+        }
+
+        .detail-card h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* CONTENT SECTIONS */
+        .content-section { margin-bottom: 3rem; }
 
         .content-section h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--text-primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .content-section h2::before {
+            content: '//';
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-pink);
+            font-weight: 400;
         }
 
         .content-section p {
             color: var(--text-secondary);
+            font-size: 0.97rem;
             margin-bottom: 1rem;
-            font-size: 1.05rem;
+            line-height: 1.85;
         }
 
         .content-section ul {
-            margin-left: 1.5rem;
+            margin-left: 1.25rem;
             color: var(--text-secondary);
         }
 
         .content-section li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.97rem;
+            line-height: 1.7;
         }
 
-        /* Project Details Grid */
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+        .content-section li::marker {
+            color: var(--accent-pink);
         }
 
-        .detail-card {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-            border-radius: 12px;
+        .content-section strong {
+            color: var(--text-primary);
+            font-weight: 500;
         }
 
-        .detail-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent-primary);
-        }
-
-        .detail-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Footer Navigation */
+        /* PROJECT NAV */
         .project-nav {
             display: flex;
             justify-content: space-between;
             margin-top: 4rem;
             padding-top: 2rem;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--border-subtle);
         }
 
         .project-nav a {
-            color: var(--accent-primary);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-green);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            letter-spacing: 0.04em;
+            transition: all 0.2s;
         }
 
         .project-nav a:hover {
-            color: var(--accent-secondary);
+            color: var(--text-primary);
+            text-shadow: 0 0 8px var(--accent-green);
         }
 
         @media (max-width: 768px) {
-            main {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .project-image {
-                height: 250px;
-            }
+            main { padding: 5rem 1.25rem 3rem; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <div class="nav-content">
-            <a href="../index.html" class="back-link">Back to Portfolio</a>
+        <div class="nav-inner">
+            <a href="index.html" class="back-link">Back to Portfolio</a>
+            <span class="nav-logo">dj.portfolio</span>
         </div>
     </nav>
 
     <main>
         <div class="project-header">
-            <span class="project-type">Management</span>
+            <div class="project-eyebrow">
+                <span class="project-badge theatre">Management</span>
+            </div>
             <h1>The Importance of Being Earnest</h1>
             <p class="project-summary">
-                A Mars rover prototype that uses computer vision and LIDAR for autonomous navigation and terrain mapping.
+                Completed my WPI HUA Practicum as Stage Manager the WPI HUA Drama Theatre's fall production of <i>The Importance of Being Earnest</i> by Oscar Wilde.
             </p>
             <div class="tech-stack">
-                <span class="tech-item">ROS</span>
-                <span class="tech-item">Python</span>
-                <span class="tech-item">OpenCV</span>
-                <span class="tech-item">Raspberry Pi</span>
+                <span class="tech-item">HUA Practicum</span>
+                <span class="tech-item">Documentation</span>
+                <span class="tech-item">Communication</span>
             </div>
         </div>
 
-        <img src="../images/ibe-company.jpg" 
-            alt="The Importance of Being Earnest company photo" 
-            class="project-image"
-            style="width: 100%; height: auto; object-fit: cover;">
-            
-        <img src="../images/ibe.jpg" 
-            alt="The Importance of Being Earnest company photo" 
-            class="project-image"
-            style="width: 100%; height: auto; object-fit: cover;">
-
-        <div class="content-section">
-            <h2>Overview</h2>
-            <p>
-                This project involved designing and building a fully autonomous rover capable of navigating challenging terrain. The rover uses a combination of computer vision and LIDAR sensors to create real-time maps of its environment and make navigation decisions.
-            </p>
-            <p>
-                The goal was to create a robust system that could operate in unknown environments without human intervention, making it suitable for exploration scenarios where remote control isn't feasible.
-            </p>
+        <!-- Replace with actual image: -->
+        <!-- <img src="images/your-image.jpg" alt="Description" class="project-image"> -->
+        <div class="project-image-container">
+            <img src="../images/ibe-company.jpg" alt="The Importance of Being Earnest company photo" class="project-image">
+            <img src="../images/ibe.jpg" alt="A photo of a scene from The Importance of Being Earnest" class="project-image">
         </div>
 
         <div class="details-grid">
             <div class="detail-card">
-                <h3>Production Duration</h3>
+                <h3>Duration</h3>
                 <p>4 months</p>
             </div>
             <div class="detail-card">
@@ -288,38 +347,34 @@
         </div>
 
         <div class="content-section">
-            <h2>Technical Approach</h2>
+            <h2>Overview</h2>
             <p>
-                The rover's architecture was built around ROS (Robot Operating System), which provided a flexible framework for integrating various sensors and control systems. Key components included:
+                What is this project and what problem does it solve?
             </p>
+        </div>
+
+        <div class="content-section">
+            <h2>Technical Approach</h2>
+            <p>How did you build it? What were the key technical decisions?</p>
             <ul>
-                <li><strong>Computer Vision:</strong> OpenCV-based obstacle detection and path planning</li>
-                <li><strong>LIDAR Integration:</strong> Real-time 3D mapping of the environment</li>
-                <li><strong>Motor Control:</strong> Custom PID controllers for precise movement</li>
-                <li><strong>Power Management:</strong> Efficient battery system with solar charging capability</li>
+                <li><strong>Component 1:</strong> Description</li>
+                <li><strong>Component 2:</strong> Description</li>
             </ul>
         </div>
 
         <div class="content-section">
-            <h2>Challenges & Solutions</h2>
-            <p>
-                One of the biggest challenges was dealing with sensor noise and creating reliable navigation algorithms. The LIDAR data needed significant filtering to remove false positives, and the computer vision system had to work in varying lighting conditions.
-            </p>
-            <p>
-                I implemented a sensor fusion approach that combined data from multiple sources to create a more reliable environmental model. This significantly improved navigation accuracy, especially in complex terrain.
-            </p>
+            <h2>Challenges &amp; Solutions</h2>
+            <p>What was hard and how did you solve it?</p>
         </div>
 
         <div class="content-section">
             <h2>Results</h2>
-            <p>
-                The final rover successfully navigated obstacle courses with 95% accuracy and could operate continuously for 4+ hours on a single charge. The terrain mapping system generated detailed 3D models that could be used for post-mission analysis.
-            </p>
+            <p>What did you achieve? Concrete outcomes where possible.</p>
         </div>
 
         <div class="project-nav">
-            <a href="smart-home-hub.html">← Previous Project</a>
-            <a href="robotic-arm.html">Next Project →</a>
+            <a href="#">← Previous Project</a>
+            <a href="#">Next Project →</a>
         </div>
     </main>
 </body>
