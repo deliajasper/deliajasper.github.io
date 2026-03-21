@@ -1,3 +1,7 @@
+layout: page
+title: "8ML"
+permalink: /8-minutes-left
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -298,6 +302,21 @@
         @media (max-width: 768px) {
             main { padding: 5rem 1.25rem 3rem; }
         }
+        /* Carousel styles */
+        .carousel { position: relative; width: 100%; margin-bottom: 2rem; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-subtle); background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent); }
+        .carousel-track { display: flex; transition: transform .55s cubic-bezier(.22,.9,.36,1); will-change: transform; }
+        .carousel-slide { flex: 0 0 100%; display: flex; align-items: center; justify-content: center; }
+            .carousel-slide img { width: 100%; height: clamp(520px, 72vh, 1100px); object-fit: cover; display: block; border-radius: 4px; }
+        @media (max-width: 768px) { .carousel-slide img { height: clamp(220px, 38vh, 380px); } }
+            @media (max-width: 768px) { .carousel-slide img { height: clamp(320px, 52vh, 520px); } }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.45); border: none; color: var(--text-primary); width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 8px; cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,0.55); }
+        .carousel-btn.prev { left: 16px; }
+        .carousel-btn.next { right: 16px; }
+        .carousel-btn:hover { background: rgba(0,0,0,0.6); }
+        .carousel-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 18px; display: flex; gap: 8px; }
+        .carousel-dot { width: 10px; height: 10px; border-radius: 999px; border: none; background: rgba(255,255,255,0.25); cursor: pointer; transition: all .18s; }
+        .carousel-dot[aria-selected="true"], .carousel-dot.active { background: var(--accent-pink); box-shadow: 0 0 8px var(--accent-pink-glow); transform: scale(1.15); }
+        .carousel-btn:focus, .carousel-dot:focus { outline: 2px solid rgba(255,255,255,0.08); outline-offset: 3px; }
     </style>
 </head>
 <body>
@@ -311,63 +330,79 @@
     <main>
         <div class="project-header">
             <div class="project-eyebrow">
-                <span class="project-badge theatre">Robotics</span>
+                <span class="project-badge theatre">Design</span>
                 <!-- change class to "theatre" for theatre projects -->
             </div>
-            <h1>Project Title</h1>
+            <h1>8 Minutes Left</h1>
             <p class="project-summary">
-                A short 1–2 sentence summary of what this project is and why it matters.
+                In the fall of 2025 I lighting designed a production of <em>8 Minutes Left</em> with Masque Theatre, a student run theatre group on WPI campus. 
             </p>
             <div class="tech-stack">
-                <span class="tech-item">Tech 1</span>
-                <span class="tech-item">Tech 2</span>
-                <span class="tech-item">Tech 3</span>
+                <span class="tech-item">ETC EOS</span>
+                <span class="tech-item">Vectorworks</span>
+                <span class="tech-item">Theatrical Design</span>
             </div>
         </div>
 
-        <!-- Replace with actual image: -->
-        <!-- <img src="images/your-image.jpg" alt="Description" class="project-image"> -->
-        <div class="image-placeholder">[ project image ]</div>
+        <!-- Carousel: replace src values with your project images (relative to this file) -->
+        <div class="carousel" data-autoplay="true" data-interval="4500">
+            <div class="carousel-track">
+                <div class="carousel-slide">
+                    <img src="../images/8ml-1.jpg" alt="Project image 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../images/8ml-2.jpg" alt="Project image 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../images/8ml-3.jpg" alt="Project image 3">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../images/8ml-4.jpg" alt="Project image 4">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../images/8ml-5.jpg" alt="Project image 5">
+                </div>
+            </div>
+
+            <button class="carousel-btn prev" aria-label="Previous image">‹</button>
+            <button class="carousel-btn next" aria-label="Next image">›</button>
+
+            <div class="carousel-dots" role="tablist" aria-label="Image selector">
+                <button class="carousel-dot" role="tab" aria-label="Show image 1"></button>
+                <button class="carousel-dot" role="tab" aria-label="Show image 2"></button>
+                <button class="carousel-dot" role="tab" aria-label="Show image 3"></button>
+                <button class="carousel-dot" role="tab" aria-label="Show image 4"></button>
+                <button class="carousel-dot" role="tab" aria-label="Show image 5"></button>
+            </div>
+        </div>
 
         <div class="details-grid">
             <div class="detail-card">
                 <h3>Duration</h3>
-                <p>X months</p>
+                <p>2 months</p>
             </div>
             <div class="detail-card">
                 <h3>Role</h3>
-                <p>Your Role</p>
-            </div>
-            <div class="detail-card">
-                <h3>Team Size</h3>
-                <p>X members</p>
+                <p>Lighting Designer</p>
             </div>
         </div>
 
         <div class="content-section">
             <h2>Overview</h2>
             <p>
-                What is this project and what problem does it solve?
+                I had the opportunity to Lighting Design this show with a student-run theatre group at WPI. The major factors driving my design were the emotional themes of the show, and playing with both the color and/or tone along with the direction of the light. The pictures above show some examples, emphasising the use of strong angles to emphasize the mystery surrounding one of the characters, along with both RGB lighting and conventionals with gels to create atmospheres that fit the tone of each scene, but using light sparingly.
             </p>
         </div>
 
         <div class="content-section">
-            <h2>Technical Approach</h2>
-            <p>How did you build it? What were the key technical decisions?</p>
+            <h2>Technical & Design Aspects</h2>
+            <p>The plot I created for this show was built around the central idea of using color to set the tone for each specific scene.</p>
             <ul>
-                <li><strong>Component 1:</strong> Description</li>
-                <li><strong>Component 2:</strong> Description</li>
+                <li><strong>Conventional Source4 Wash:</strong> To create the wash I placed Source4 fixtures side by side, in pairs, around the theatre to cover the entire acting area, as it was in a black box theatre. Each pair consisted of one Source4 with a cool toned gel, and one with a warm toned gel in order to create two distinct washes that can be controlled to set the tone.</li>
+                <li><strong>LED Toplight Wash:</strong> With limited LED fixtures, I chose to use 9 wash fixtures in a grid to provide downlight to the entire stage. These acted more as accents, with the main light lighting the faces of the performers coming from the main washes. The color acted as an accent to set the mood for the place and scene.</li>
+                <li><strong>Color Usage:</strong> The colors used were relatively typical for the mood, so the audience would easily understand. Colors such as blues, blue-greens, and stark white were often used to represent separation whether phyiscally or emotionally, while pink, ambers, and sublte reds were used for closeness.</li>
+                <li><strong>Directional Light:</strong> Directional lighting was used to highlight specific areas of the stage in order to create a more intimate feel, well-achieved by a blackbox theatre. The light was usually kept very tight to the acting area. Additionally, for the more mysterious character of the observer, they were never directly lit, only top and side light to create an unsettling feel.</li>
             </ul>
-        </div>
-
-        <div class="content-section">
-            <h2>Challenges &amp; Solutions</h2>
-            <p>What was hard and how did you solve it?</p>
-        </div>
-
-        <div class="content-section">
-            <h2>Results</h2>
-            <p>What did you achieve? Concrete outcomes where possible.</p>
         </div>
 
         <div class="project-nav">
@@ -375,5 +410,71 @@
             <a href="#">Next Project →</a>
         </div>
     </main>
+    <script>
+        (function () {
+            const carousels = document.querySelectorAll('.carousel');
+            carousels.forEach(initCarousel);
+
+            function initCarousel(root) {
+                const track = root.querySelector('.carousel-track');
+                const slides = Array.from(root.querySelectorAll('.carousel-slide'));
+                const prev = root.querySelector('.carousel-btn.prev');
+                const next = root.querySelector('.carousel-btn.next');
+                const dots = Array.from(root.querySelectorAll('.carousel-dot'));
+                let index = 0;
+                const total = slides.length;
+                const autoplay = root.dataset.autoplay === 'true';
+                const interval = parseInt(root.dataset.interval, 10) || 4000;
+                let timer = null;
+
+                function update() {
+                    track.style.transform = `translateX(${ -index * 100 }%)`;
+                    dots.forEach((d, i) => {
+                        const selected = i === index;
+                        d.classList.toggle('active', selected);
+                        d.setAttribute('aria-selected', selected ? 'true' : 'false');
+                    });
+                }
+
+                function go(delta) {
+                    index = (index + delta + total) % total;
+                    update();
+                }
+
+                function goTo(i) {
+                    index = (i + total) % total;
+                    update();
+                }
+
+                prev.addEventListener('click', () => { go(-1); resetTimer(); });
+                next.addEventListener('click', () => { go(1); resetTimer(); });
+
+                dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); resetTimer(); }));
+
+                root.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') { go(-1); resetTimer(); }
+                    if (e.key === 'ArrowRight') { go(1); resetTimer(); }
+                });
+
+                root.addEventListener('mouseenter', pauseTimer);
+                root.addEventListener('focusin', pauseTimer);
+                root.addEventListener('mouseleave', () => { if (autoplay) startTimer(); });
+                root.addEventListener('focusout', () => { if (autoplay) startTimer(); });
+
+                function startTimer() {
+                    if (!autoplay) return;
+                    stopTimer();
+                    timer = setInterval(() => go(1), interval);
+                }
+                function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
+                function pauseTimer() { stopTimer(); }
+                function resetTimer() { stopTimer(); if (autoplay) startTimer(); }
+
+                // init
+                update();
+                if (autoplay) startTimer();
+            }
+        })();
+    </script>
 </body>
 </html>
