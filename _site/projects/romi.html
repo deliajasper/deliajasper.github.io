@@ -1,6 +1,6 @@
 layout: page
-title: "Romi Robot"
-permalink: /romi
+title: "Romi"
+permalink: /romi-robot
 
 <!DOCTYPE html>
 <html lang="en">
@@ -307,7 +307,7 @@ permalink: /romi
 <body>
     <nav>
         <div class="nav-inner">
-            <a href="index.html" class="back-link">Back to Portfolio</a>
+            <a href="../index.html" class="back-link">Back to Portfolio</a>
             <span class="nav-logo">dj.portfolio</span>
         </div>
     </nav>
@@ -353,7 +353,7 @@ permalink: /romi
         <div class="content-section">
             <h2>Overview</h2>
             <p>
-                This was a long-term class project for WPI's RBE2002 course, which focuses on sensing. We used a Pololi Romi robot, and completed tasks such as lifting a basket and weighing it, navigating to specific coordinates based on AprilTag markers, and applying inverse and forward kinematics for movement tracking.
+                This was a long-term class project for WPI's RBE2002 course, which focuses on sensing. We used a Pololu Romi robot, and completed tasks such as lifting a basket and weighing it, navigating to specific coordinates based on AprilTag markers, and applying inverse and forward kinematics for movement tracking.
             </p>
             <p>
                 Major concepts use include PID control, op-amps and filters, computer vision, and state based control.
@@ -366,26 +366,37 @@ permalink: /romi
                 The romi was coded using C++, which allowed for integrating various sensors and libraries. Key components included:
             </p>
             <ul>
-                <li><strong>Computer Vision:</strong> OpenMV camera for april tag detection</li>
+                <li><strong>Computer Vision:</strong> OpenMV camera for april tag detection.</li>
                 <li><strong>Sensor Fusion:</strong> Fusing readings from both a gyroscope and accelerometer using a Complementary Filter. This was used for forward and inverse kinematics.</li>
-                <li><strong>Motor Control:</strong> PID controllers for precise movement</li>
+                <li><strong>Motor Control:</strong> PID controllers for precise movement.</li>
             </ul>
         </div>
 
         <div class="content-section">
-            <h2>Challenges &amp; Solutions</h2>
-            <p>What was hard and how did you solve it?</p>
+            <h2>Results</h2>
+            <p>The robot was able to complete all assigned tasks with a high degree of accuracy and reliability. An IR remote was used to command the robot to go to specific locations. It was also able to detect april tags on baskets, and either pick up the basket, if an arm was attached, or drive up to it.</p>
         </div>
 
         <div class="content-section">
-            <h2>Results</h2>
-            <p>What did you achieve? Concrete outcomes where possible.</p>
+            <h2>Videos</h2>
+            <p>See videos of the robot in action:</p>
         </div>
-
+        <div class="project-image-container">
+            <video src="../images/romi-1.MOV" alt="Video of romi robot lifting a basket" class="project-image" controls>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="project-image-container">
+            <video src="../images/romi-2.MOV" alt="Video of romi robot navigating" class="project-image" controls>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
         <div class="project-nav">
             <a href="#">← Previous Project</a>
             <a href="#">Next Project →</a>
         </div>
+        
     </main>
 </body>
 </html>

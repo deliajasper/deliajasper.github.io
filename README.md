@@ -3,7 +3,7 @@
 This repository contains a personal portfolio website built with Jekyll and static HTML pages. The source content lives in the `jekyll/` folder (posts, pages, templates). A static build is generated into the `_site/` folder for deployment.
 
 **Highlights:**
-- Simple, mostly static site with Jekyll-driven pages and a set of standalone project pages.
+- Simple, static site with Jekyll-driven pages and a set of standalone project pages.
 - Project pages live in the `projects/` folder for quick, static publishing.
 - Media and downloadable assets live in `files/` and `images/`.
 
