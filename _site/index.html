@@ -26,7 +26,8 @@ permalink: /
             --accent-pink-glow: rgba(206, 70, 133, 0.25);
             --accent-green: #4bd339;
             --accent-green-dim: rgba(57, 211, 83, 0.1);
-            --accent-purple: #9630f0;
+            --accent-purple: #9a7fe7;
+            --accent-purple-dim: rgba(75, 36, 181, 0.308);
             --border-subtle: rgba(255,255,255,0.05);
             --border-card: rgba(165, 65, 128, 0.12);
             --border-green: rgba(57, 211, 83, 0.2);
@@ -302,12 +303,28 @@ permalink: /
             gap: 0.6rem;
         }
 
+        .section-eyebrow-featured {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent-purple);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
         .section-eyebrow::before {
             content: '//';
             color: var(--text-dim);
         }
 
          .section-eyebrow-theatre::before {
+            content: '//';
+            color: var(--text-dim);
+        }
+        .section-eyebrow-featured::before {
             content: '//';
             color: var(--text-dim);
         }
@@ -455,6 +472,41 @@ permalink: /
             border-color: rgba(206, 70, 133, 0.18);
             color: var(--text-secondary);
         }
+
+        /* ===================== FEATURED PROJECT ===================== */
+        .featured-section {
+            margin: 2.5rem 2rem;
+            padding: 1.25rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 6px;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 1.25rem;
+            background: transparent;
+            border: none;
+        }
+        
+        /* compact badge shown on original cards when featured */
+        .compact-featured-badge {
+            display: inline-block;
+            top: 1.25rem;
+            left: 1.25rem;
+            background: var(--accent-purple-dim);
+            color: var(--accent-purple);
+            border: 1px solid var(--accent-purple);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            padding: 0.3rem 0.7rem;
+            border-radius: 2px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
 
         /* ===================== ABOUT ===================== */
         .about-layout {
@@ -765,17 +817,14 @@ permalink: /
         </div>
     </section>
 
-    <hr class="section-divider">
-
-    <!-- ================= ENGINEERING ================= -->
-    <section id="engineering">
+    <!-- ================= FEATURED ================= -->
+    <section id="featured">
         <div class="section-header">
-            <div class="section-eyebrow">Technical Projects</div>
-            <h2>Engineering Work</h2>
-            <p>Building systems from the ground up incorperating circuits, code, and everything in between.</p>
+            <div class="section-eyebrow-featured">Spotlight</div>
+            <h2>Featured Projects</h2>
+            <p>Highlighting recent projects I'm proud of.</p>
         </div>
-        <div class="project-grid">
-
+        <div class="project-grid featured-grid" id="featured-grid">
             <a href="projects/TrActor.html" class="project-card">
                 <div class="card-top">
                     <h3>TrActor: Ultra-Wide Band Devices for Augmented Stage Management</h3>
@@ -791,8 +840,38 @@ permalink: /
                     <span class="tech-item">Control & Automation</span>
                 </div>
             </a>
+        </div>
+    </section>
 
-            <a href="tamagotchi.html" class="project-card">
+    <hr class="section-divider">
+
+    <!-- ================= ENGINEERING ================= -->
+    <section id="engineering">
+        <div class="section-header">
+            <div class="section-eyebrow">Technical Projects</div>
+            <h2>Engineering Work</h2>
+            <p>Building systems from the ground up incorperating circuits, code, and everything in between.</p>
+        </div>
+        <div class="project-grid">
+
+            <a href="projects/TrActor.html" class="project-card" data-featured="true">
+                <div class="card-top">
+                    <h3>TrActor: Ultra-Wide Band Devices for Augmented Stage Management</h3>
+                    <span class="card-badge eng">MQP</span>
+                    <span class="compact-featured-badge">Featured</span>
+                </div>
+                <p>
+                    TrActor is a low-cost wearable Ultra-Wide Band (UWB) tracking system that digitally records actors' movements, providing a live stage map to improve collaboration, interface with technical systems, and replace traditional paper notes for production teams.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-item">C++</span>
+                    <span class="tech-item">Embedded Systems</span>
+                    <span class="tech-item">UWB</span>
+                    <span class="tech-item">Control & Automation</span>
+                </div>
+            </a>
+
+            <a href="#" class="project-card">
                 <div class="card-top">
                     <h3>Terminal-Based Tamagotchi</h3>
                     <span class="card-badge eng">Computer Eng.</span>
@@ -805,12 +884,12 @@ permalink: /
                 </div>
             </a>
 
-            <a href="fpga_calc.html" class="project-card">
+            <a href="projects/fpga_calc.html" class="project-card">
                 <div class="card-top">
                     <h3>FPGA Four-Function Calculator</h3>
                     <span class="card-badge eng">Computer Eng.</span>
                 </div>
-                <p>Designed a four-function calculator in Verilog on an FPGA, implementing arithmetic logic units, display drivers, and input handling in hardware description language.</p>
+                <p>Designed a four-function calculator in Verilog on an FPGA, implementing arithmetic logic, display drivers, and input handling in Verilog, a hardware description language.</p>
                 <div class="tech-stack">
                     <span class="tech-item">Verilog</span>
                     <span class="tech-item">FPGAs</span>
@@ -818,7 +897,7 @@ permalink: /
                 </div>
             </a>
 
-            <a href="projects/romi.html" class="project-card">
+            <a href="projects/romi.html" class="project-card" data-featured="true">
                 <div class="card-top">
                     <h3>Small Mobile Robot — RBE 2002</h3>
                     <span class="card-badge eng">Robotics</span>
