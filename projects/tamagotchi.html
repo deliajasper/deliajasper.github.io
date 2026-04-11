@@ -1,6 +1,6 @@
 layout: page
-title: "fufu-pot"
-permalink: /fufu-pot
+title: "tamagotchi"
+permalink: /tamagotchi
 
 <!DOCTYPE html>
 <html lang="en">
@@ -315,59 +315,73 @@ permalink: /fufu-pot
     <main>
         <div class="project-header">
             <div class="project-eyebrow">
-                <span class="project-badge eng">Robotics</span>
+                <span class="project-badge eng">Computer Eng.</span>
             </div>
-            <h1>Fufu Pot</h1>
+            <h1>Terminal-Based Tamagotchi Game</h1>
             <p class="project-summary">
-                A rapid prototying project with Northeastern's Generate product development studio, which created a functional stand-mixer like device which streamlined to process of making Fufu, a West African dish.
+                For my final project in my ECE2039 Computational Engineering class I designed and implemented a terminal-based Tamagotchi game in C, with terminal based input/output support and simple assembly language make instructions.
             </p>
+
+
             <div class="tech-stack">
-                <span class="tech-item">CAD</span>
-                <span class="tech-item">3D Printing</span>
-                <span class="tech-item">Mechanical Design</span>
+                <span class="tech-item">C</span>
+                <span class="tech-item">Linux Terminal</span>
+                <span class="tech-item">Basic Assembly</span>
             </div>
         </div>
 
         <div class="project-image-container">
-            <img src="../images/fufupot.jpeg" alt="An image of the Fufu Pot, a stand-mixer-like device." class="project-image">
-            <img src="../images/fufupot_me.jpeg" alt="An image of Delia hugging the Fufu Pot" class="project-image">
+            <img src="../images/tamagotchi-fsm.png" alt="The tamagotchi program's state machine diagram'." class="project-image">
+            <img src="../images/tamagotchi.png" alt="The tamagotchi program running in the terminal." class="project-image">
         </div>
 
         <div class="details-grid">
             <div class="detail-card">
                 <h3>Duration</h3>
-                <p>13 weeks</p>
+                <p>1.5 weeks</p>
             </div>
             <div class="detail-card">
                 <h3>Role</h3>
-                <p>Hardware Engineer</p>
+                <p>Developer</p>
             </div>
             <div class="detail-card">
                 <h3>Team Size</h3>
-                <p>13 members</p>
+                <p>1 member</p>
             </div>
         </div>
 
         <div class="content-section">
             <h2>Overview</h2>
             <p>
-                This project was done as a member of Generate, Northeastern University's premier student-run product development studio (prior to my transfer from the University). While working on this project, I was a Mechanical Engineering Major, and acted as a mechanical engineer on this project. This product was a stand-mixer device, with added functionality to dispense water and heat the mixture from the bottom. The project was done in partnership with an external sponsor, being one of the first product at Generat to be done in partnership with an external sponsor. The project was done over the course of one semester (13 weeks), and culminated in a final prototype that was showcased at Generate's Showcase.
+                This remake of the Tamagotchi game is a terminal-based simulation where players care for a virtual pet by managing its hunger, happiness, and mood. The game operates on a Finite State Machine, allowing the pet to transition between different states based on player interactions and time-based events. Players can feed, play with, and wash their pet to take care of it and keep it alive and happy.
             </p>
         </div>
 
         <div class="content-section">
             <h2>Technical Approach</h2>
-            <p>I was primarily focused on the Water Dispensing system built into the machine, additionally helping with the mixer gear housing.</p>
+            <p>How did you build it? What were the key technical decisions?</p>
             <ul>
-                <li><strong>Water Dispensing:</strong> This system involved the use of a pump to deliver water from a reservoir to the spout in the center of the mixer to get delivered into the bowl. This involved routing tubing through the main structure of the mixer, finding a pump able to dispense a precise amount of water, and designing the spout as to not get in the way of the bowl, or impede water flow.</li>
-                <li><strong>Mixing:</strong> The mixing module consisted of a planetary gear system able to rotate the mixing head as desired. Multiple attachments were created in CAD and fabricated.</li>
-                <li><strong>Heating:</strong> The heating component was designed to heat the mixture from the bottom, ensuring even cooking and proper consistency. It involved a hot plate embedded inside the bowl housing, so the bowl was still removable, but heated as needed during the cooking process.</li>
+                <li><strong>Terminal Printing:</strong> All printed output is in the form of ASCII art and text. Expressive sprites were printed to match the current mood the pet is in, along with displaying the pet's name, current mood, and any input that can take place.</li>
+                <li><strong>Input & Output:</strong> The game handles user input through keyboard interactions and displays output in the terminal. The ncurses library was used for handling the terminal interactions in order for the state machine to remain non-blocking.</li>
+                <li><strong>Makefile:</strong> A Makefile is used to compile the C source files and link the necessary libraries. A "make clean" command was also created which enables all files that are made during the "make" process to be easily deleted/</li>
             </ul>
-            <p> All components came together in the end to create a fully functional prototype at Generate's Spring 2024 Showcase.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Challenges &amp; Solutions</h2>
+            <p>The most challenging parts of creating this game was creating the non-blocking inputs and time based state transitions. Using the ncurses library, I often ran into issues of the screen flickering or being completely erased except during inputs, which were fixed after researching and consulting forums. The biggest issue I had with the time library was figuring out if I should check it in the main function or helper functions.</p>
+            <p>This was  challenging to figure out, but I am very happy with the game's implementation.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Results</h2>
+            <p>My program works very well. Users will interact with the terminal, styled to look like a text-based game, to perform actions with their virtual pet. I personally am happy with the printing of the virtual pet and the overall flow of the game. For each mood, the virtual pet has a slightly different sprite showing a happier or more tired sprite. During the game, in each mood, actions are listed and when the input is typed in by the user, the state changes which is shown by the game dialog and sprites.</p> 
+            <p>Most transitions are triggered by user keyboard input. For example, if the pet is Sleepy after being played with (Keyboard input: P), if the user inputs “R” on the keyboard, it will rest and immediately transition to the happy state. The game works very well, and outputs the desired behaviors.</p>
         </div>
 
         <div class="project-nav">
-            <a href="romi.html">← Next Project</a>
+            <a href="fpga-calc.html">← Previous Project</a>
+            <a href="TrActor.html">Next Project →</a>
         </div>
     </main>
 </body>
